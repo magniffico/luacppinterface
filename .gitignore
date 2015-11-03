@@ -10,3 +10,5 @@ config.h
 config.status
 LuaCppInterface/.deps
 tests/.deps
+LuaCppInterface/Debug/
+LuaCppInterface/Release/

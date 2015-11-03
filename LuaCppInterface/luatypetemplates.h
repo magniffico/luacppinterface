@@ -131,17 +131,17 @@ DEFINE_TYPE_TEMPLATE_FOR(std::string,, lua_pushlstring(state.get(), param.c_str(
 DEFINE_TYPE_TEMPLATE_FOR(TYPE*, typename TYPE, lua_pushlightuserdata(state.get(), (void*)param), TYPE* res = LuaLightUserdata<TYPE>(state,-1).GetPointer())
 
 // primitive types
-DEFINE_TYPE_TEMPLATE_FOR(int8_t,, lua_pushinteger(state.get(), param), int8_t res = lua_tointeger(state.get(), -1))
-DEFINE_TYPE_TEMPLATE_FOR(int16_t,, lua_pushinteger(state.get(), param), int16_t res = lua_tointeger(state.get(), -1))
-DEFINE_TYPE_TEMPLATE_FOR(int32_t,, lua_pushinteger(state.get(), param), int32_t res = lua_tointeger(state.get(), -1))
-DEFINE_TYPE_TEMPLATE_FOR(int64_t,, lua_pushinteger(state.get(), param), int64_t res = lua_tointeger(state.get(), -1))
+DEFINE_TYPE_TEMPLATE_FOR(int8_t, , lua_pushinteger(state.get(), param), int8_t res = lua_tointeger(state.get(), -1))
+DEFINE_TYPE_TEMPLATE_FOR(int16_t, , lua_pushinteger(state.get(), param), int16_t res = lua_tointeger(state.get(), -1))
+DEFINE_TYPE_TEMPLATE_FOR(int32_t, , lua_pushinteger(state.get(), param), int32_t res = lua_tointeger(state.get(), -1))
+DEFINE_TYPE_TEMPLATE_FOR(int64_t, , lua_pushinteger(state.get(), static_cast<lua_Integer>(param)), int64_t res = lua_tointeger(state.get(), -1))
 
 DEFINE_TYPE_TEMPLATE_FOR(uint8_t,, lua_pushunsigned(state.get(), param), uint8_t res = lua_tounsigned(state.get(), -1))
 DEFINE_TYPE_TEMPLATE_FOR(uint16_t,, lua_pushunsigned(state.get(), param), uint16_t res = lua_tounsigned(state.get(), -1))
 DEFINE_TYPE_TEMPLATE_FOR(uint32_t,, lua_pushunsigned(state.get(), param), uint32_t res = lua_tounsigned(state.get(), -1))
-DEFINE_TYPE_TEMPLATE_FOR(uint64_t,, lua_pushunsigned(state.get(), param), uint64_t res = lua_tounsigned(state.get(), -1))
+DEFINE_TYPE_TEMPLATE_FOR(uint64_t,, lua_pushunsigned(state.get(), static_cast<lua_Unsigned>(param)), uint64_t res = lua_tounsigned(state.get(), -1))
 
-DEFINE_TYPE_TEMPLATE_FOR(float,, lua_pushnumber(state.get(), param), float res = lua_tonumber(state.get(), -1))
+DEFINE_TYPE_TEMPLATE_FOR(float,, lua_pushnumber(state.get(), param), float res = static_cast<float>(lua_tonumber(state.get(), -1)))
 DEFINE_TYPE_TEMPLATE_FOR(double,, lua_pushnumber(state.get(), param), double res = lua_tonumber(state.get(), -1))
 
 DEFINE_TYPE_TEMPLATE_FOR(bool,, lua_pushboolean(state.get(), param), bool res = lua_toboolean(state.get(), -1) != 0)
