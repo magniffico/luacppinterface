@@ -161,6 +161,4 @@ public:
 
 };
 
-#include "luauserdatabindtemplates.h"
-
 #endif // LUACPPINTERFACE
